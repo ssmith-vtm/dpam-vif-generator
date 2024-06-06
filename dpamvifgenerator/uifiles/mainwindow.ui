@@ -196,7 +196,7 @@
           <item row="2" column="0">
            <widget class="QLabel" name="DP_Signaling_Rate_Support_label">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field corresponds where the DisplayPort interface is presented, either Type-C Plug or Receptacle&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field corresponds where the DisplayPort interface is presented, either USB Type-C Plug or Receptacle&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>DP Signaling Rate Support</string>
@@ -226,12 +226,12 @@
             </item>
             <item>
              <property name="text">
-              <string>DisplayPort Type-C to Type-C Cable</string>
+              <string>DisplayPort USB Type-C to USB Type-C Cable</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>DiplayPort to Type-C Cable</string>
+              <string>DiplayPort to USB Type-C Cable</string>
              </property>
             </item>
             <item>
@@ -244,7 +244,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="DP_Alt_Mode_Device_Type_label">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field will correspond to the capabilities of the DisplayPort product. DP Sink is used for end-products such as monitors, docks, etc. DP Sources is used for end-products such as Notebooks, Cell Phones, etc. DP Source &amp;amp; Sink is used for end-products such as bi-directional Type-C to DP cables, docks, etc.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field will correspond to the capabilities of the DisplayPort product. DP Sink is used for end-products such as monitors, docks, etc. DP Sources is used for end-products such as Notebooks, Cell Phones, etc. DP Source &amp;amp; Sink is used for end-products such as bi-directional USB Type-C to DP cables, docks, etc.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>DP Alt Mode Device Type</string>
@@ -530,7 +530,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="DP_Capability_label">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field will correspond to the capabilities of the DisplayPort product. DP Sink is used for end-products such as monitors, docks, etc. DP Sources is used for end-products such as Notebooks, Cell Phones, etc. DP Source &amp;amp; Sink is used for end-products such as bi-directional Type-C to DP cables, docks, etc.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field will correspond to the capabilities of the DisplayPort product. DP Sink is used for end-products such as monitors, docks, etc. DP Sources is used for end-products such as Notebooks, Cell Phones, etc. DP Source &amp;amp; Sink is used for end-products such as bi-directional USB Type-C to DP cables, docks, etc.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>DP Capability</string>
@@ -543,7 +543,7 @@
           <item row="2" column="0">
            <widget class="QLabel" name="DP_Receptacle_Indication_label">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field corresponds where the DisplayPort interface is presented, either Type-C Plug or Receptacle&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field corresponds where the DisplayPort interface is presented, either USB Type-C Plug or Receptacle&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>DP Receptacle Indication</string>
