@@ -304,31 +304,6 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QComboBox" name="DP_Capability_cbb">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <item>
-             <property name="text">
-              <string>DP Sink Capable</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>DP Source Capable</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Both DP Source &amp; Sink Capable</string>
-             </property>
-            </item>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="Signaling_For_Transport_Of_DisplayPort_Protocol_label">
             <property name="toolTip">
@@ -593,6 +568,39 @@
               </widget>
              </item>
             </layout>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QGroupBox" name="DP_Capability_groupbox">
+            <property name="title">
+             <string/>
+            </property>
+            <widget class="QCheckBox" name="DP_Sink_Capable_checkbox">
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>10</y>
+               <width>139</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>DP Sink Capable</string>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="DP_Source_Capable_checkbox">
+             <property name="geometry">
+              <rect>
+               <x>240</x>
+               <y>10</y>
+               <width>171</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>DP Source Capable</string>
+             </property>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -940,7 +948,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
