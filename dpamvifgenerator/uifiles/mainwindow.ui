@@ -161,7 +161,7 @@
             </item>
            </widget>
           </item>
-          <item row="3" column="0">
+          <!-- <item row="3" column="0">
            <widget class="QLabel" name="Device_Power_Source_label">
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field is set when USB2.0 is need while in a DisplayPort Configuration &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -173,8 +173,8 @@
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
-          </item>
-          <item row="3" column="1" colspan="2">
+          </item> -->
+          <!-- <item row="3" column="1" colspan="2">
            <widget class="QComboBox" name="Device_Power_Source_cbb">
             <item>
              <property name="text">
@@ -192,7 +192,7 @@
              </property>
             </item>
            </widget>
-          </item>
+          </item> -->
           <item row="2" column="0">
            <widget class="QLabel" name="DP_Signaling_Rate_Support_label">
             <property name="toolTip">
@@ -479,7 +479,7 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <!-- <item row="7" column="0">
            <widget class="QLabel" name="DP_Mode_Auto_Entry_label">
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field is specific for a DFP (DP Source) in which it will automatically enter DP Alt Mode. This field is not set for a UFP (DP Sink) as the DP Alt Mode sequence would be initiated by the DFP port partner. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -501,14 +501,14 @@
              <string/>
             </property>
            </widget>
-          </item>
+          </item> -->
           <item row="0" column="0">
            <widget class="QLabel" name="DP_Capability_label">
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field will correspond to the capabilities of the DisplayPort product. DP Sink is used for end-products such as monitors, docks, etc. DP Sources is used for end-products such as Notebooks, Cell Phones, etc. DP Source &amp;amp; Sink is used for end-products such as bi-directional USB Type-C to DP cables, docks, etc.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
-             <string>DP Capability</string>
+             <string>DP Capability --</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -581,7 +581,7 @@
                <x>50</x>
                <y>10</y>
                <width>139</width>
-               <height>24</height>
+               <height>18</height>
               </rect>
              </property>
              <property name="text">
@@ -594,7 +594,7 @@
                <x>240</x>
                <y>10</y>
                <width>171</width>
-               <height>24</height>
+               <height>18</height>
               </rect>
              </property>
              <property name="text">

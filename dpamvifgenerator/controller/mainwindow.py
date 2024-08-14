@@ -167,8 +167,16 @@ class MainWindow(QMainWindow):
 
         # Setup UI defaults
         ds_input_vif = self.get_from_store("user_path_to_input")
-        if ds_input_vif:
-            self.populate_from_input_vif(ds_input_vif)
+
+        # NOTE: Uncomment the below line to make sure regardless the application resets the filename
+        # ds_input_vif = ""
+
+        # NOTE: If needed to display previously stored input_vif when the application is opened again
+        # Checks if the file still exists at the location
+        if ds_input_vif and os.path.exists(ds_input_vif):
+                self.populate_from_input_vif(ds_input_vif)
+        else:
+            ds_input_vif = ""        
 
     def port_label_changed(self, port_value):
         # Attempt to load port data from store
@@ -191,6 +199,18 @@ class MainWindow(QMainWindow):
                 else:
                     checkbox.setCheckState(Qt.CheckState.Unchecked)
 
+    # Reset Output Progress
+    def reset_output_generation_bar(self, progress: QProgressBar):
+        progress.setValue(0)
+        # Set status text
+        self.ui.save_status_label.setText(
+            """<p>
+                <span style=" font-weight:700;">
+                    Status
+                </span>: Nothing in Progress
+            </p>"""
+        )
+
     def browse_input_button(self):
         # Get user input filename
         filename = QFileDialog.getOpenFileName(
@@ -205,6 +225,9 @@ class MainWindow(QMainWindow):
         # User selected a file
         self.populate_from_input_vif(filename)
 
+        # Reset progress bar if a new file was loaded
+        self.reset_output_generation_bar(self.ui.save_progress_bar)
+
     def populate_from_input_vif(self, input_vif_filename):
         filename = os.path.abspath(input_vif_filename)
         self.ui.input_line_edit.setText(filename)
@@ -218,11 +241,19 @@ class MainWindow(QMainWindow):
         self.ui.port_label_cbb.clear()
         prefix_map = {"vif": "http://usb.org/VendorInfoFile.xsd"}
         for port in input_vif.getroot().findall(".//vif:Component", prefix_map):
-            self.ui.port_label_cbb.addItem(port.find("vif:Port_Label", prefix_map).text)
-        # Activate UI elements
-        self.ui.port_label_cbb.setEnabled(True)
+
+            port_name = port.find("vif:Port_Label", prefix_map)
+
+            if(port_name != None):
+                self.ui.port_label_cbb.addItem(port_name.text)
+                # Activate UI elements
+                self.ui.port_label_cbb.setEnabled(True)
+        
         for tab in self.tabs:
-            tab.setEnabled(True)
+            if port_name is None and tab.objectName() == 'SOP_DP_Capabilities_tab':
+                tab.setEnabled(False)
+            else:
+                tab.setEnabled(True)
 
     def save_as_output(self):
         # Get user output filename
@@ -255,7 +286,6 @@ class MainWindow(QMainWindow):
 
                 # Generate DPAM Settings XML file
                 settings = self.generate_settings()
-                progress.setValue(100)
 
                 # Generate output VIF XML file
                 self.ui.save_status_label.setText(
@@ -361,14 +391,10 @@ class MainWindow(QMainWindow):
             for i in range(self.ui.port_label_cbb.count())
         ]
 
-        # Get current values for each port from datastore
-        for port_value, port_label in enumerate(ports):
-            # Add Component and Port_Label elements
+        # If no ports are present, still generating OptionalContent if it is feasible
+        if(len(ports) == 0):
             component_root = ET.Element("vif:Component")
             vif_root.append(component_root)
-            port_label_element = ET.Element("vif:Port_Label")
-            port_label_element.text = str(port_label)
-            component_root.append(port_label_element)
 
             # Create optional content root
             opt_content_root = ET.Element("opt:OptionalContent", identifier="DPAM")
@@ -390,13 +416,56 @@ class MainWindow(QMainWindow):
                     )
                 )
                 opt_content_root.append(tab_root)
+                x = 1
                 for field in tab.findChildren(
                     QWidget, options=Qt.FindChildOption.FindDirectChildrenOnly
                 ):
                     # Generate XML elements for each field
-                    element = self.generate_element(field, port_value)
+                    element = self.generate_element(field, None)
                     if element is not None:
                         tab_root.append(element)
+                
+            logging.info("The VIF has no Ports")
+        
+        else:
+
+            # Get current values for each port from datastore
+            for port_value, port_label in enumerate(ports):
+                # Add Component and Port_Label elements
+                component_root = ET.Element("vif:Component")
+                vif_root.append(component_root)
+                port_label_element = ET.Element("vif:Port_Label")
+                port_label_element.text = str(port_label)
+                component_root.append(port_label_element)
+
+                # Create optional content root
+                opt_content_root = ET.Element("opt:OptionalContent", identifier="DPAM")
+                opt_content_root.set(
+                    "{http://www.w3.org/XML/1998/namespace}space", "preserve"
+                )
+                component_root.append(opt_content_root)
+                # Add DPAM Comment
+                comment_line = ";" * 78
+                opt_content_root.append(ET.Comment(comment_line))
+                opt_content_root.append(ET.Comment(";DisplayPort Alternate Mode"))
+                opt_content_root.append(ET.Comment(comment_line))
+
+                # Add in tab and field elements
+                for tab in self.tabs:
+                    tab_root = ET.Element(
+                        "opt:{}".format(
+                            tab.objectName().replace(" ", "_").removesuffix(UI_TAB_SUFFIX)
+                        )
+                    )
+
+                    opt_content_root.append(tab_root)
+                    for field in tab.findChildren(
+                        QWidget, options=Qt.FindChildOption.FindDirectChildrenOnly
+                    ):
+                        # Generate XML elements for each field
+                        element = self.generate_element(field, port_value)
+                        if element is not None:
+                            tab_root.append(element)
 
         # Write to local file
         settings = os.path.join(self.user_data_dir, "settings_new.xml")
