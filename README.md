@@ -22,7 +22,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
 ___
 
 ## High Level Summary
-Determining device/port capabilities for USB Type-C DiplayPort Alternate Mode (DPAM) ports and DisplayPort (DP) Source ports is difficult and there is no standard, machine readable format to report this information to test tools. This affects test equipment correlation and proper test coverage for certification and at VESA Plugtest events.
+Determining device/port capabilities for USB Type-C DisplayPort Alternate Mode (DPAM) ports and DisplayPort (DP) Source ports is difficult and there is no standard, machine readable format to report this information to test tools. This affects test equipment correlation and proper test coverage for certification and at VESA Plugtest events.
 
 The USB Implementers Forum (USBIF) currently has a Vendor Info File (VIF) tool and documentation for VIF structure/definitions:
 + The USBIF tool can create or load VIF files
@@ -39,9 +39,9 @@ Platform installers can be found under [GitHub Releases](https://github.com/r-al
 ___
 
 ## Running from Source
-This tool requires Python 3.11 (or newer) and Poetry for running from source.
+This tool requires Python 3.11 and Poetry for running from source.
 
-1. Install Python 3.11 or newer
+1. Install Python 3.11
     - https://www.python.org/downloads/
 2. Install Poetry
     - https://python-poetry.org/docs/#installing-with-the-official-installer

@@ -250,7 +250,7 @@ class MainWindow(QMainWindow):
                 self.ui.port_label_cbb.setEnabled(True)
         
         for tab in self.tabs:
-            if port_name is None and tab.objectName() == 'SOP_DP_Capabilities_tab':
+            if port_name is None and (tab.objectName() == 'SOP_DP_Capabilities_tab' or tab.objectName() == 'DisplayPort_Status_tab'):
                 tab.setEnabled(False)
             else:
                 tab.setEnabled(True)

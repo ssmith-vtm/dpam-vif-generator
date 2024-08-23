@@ -239,7 +239,7 @@ class DPAMVIFGenerator:
                         port.append(ET.Comment("Non-USB Content"))
                         port.append(port_settings['NA'])
 
-                    # Optinal Content already exists and
+                    # Optional Content already exists and
                     elif(optional_content is not None and not DPAMVIFGenerator.elements_equal(optional_content, port_settings["NA"])):
                         port.append(ET.Comment("Non-USB Content"))
                         port.append(port_settings['NA'])
