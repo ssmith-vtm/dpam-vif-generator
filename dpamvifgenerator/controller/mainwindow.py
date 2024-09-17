@@ -421,7 +421,7 @@ class MainWindow(QMainWindow):
                     QWidget, options=Qt.FindChildOption.FindDirectChildrenOnly
                 ):
                     # Generate XML elements for each field
-                    element = self.generate_element(field, None)
+                    element = self.generate_element(field, '-1')
                     if element is not None:
                         tab_root.append(element)
                 

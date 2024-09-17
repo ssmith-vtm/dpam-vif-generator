@@ -224,7 +224,8 @@ class DPAMVIFGenerator:
 
                 if(not DPAMVIFGenerator.contains_contents(optional_content, port_settings[port_name.text])):
                     # Merge DPAM opt content since OptionalContent block already exists
-                    optional_content.append(port_settings[port_name.text])
+                    port.remove(optional_content)
+                    port.append(port_settings[port_name.text])
             else:
                 
                 # Optional Content not found
@@ -241,7 +242,7 @@ class DPAMVIFGenerator:
 
                     # Optional Content already exists and
                     elif(optional_content is not None and not DPAMVIFGenerator.elements_equal(optional_content, port_settings["NA"])):
-                        port.append(ET.Comment("Non-USB Content"))
+                        port.remove(optional_content)
                         port.append(port_settings['NA'])
                     else:
                         logging.info('Same OptionalContent already found in the VIF')
